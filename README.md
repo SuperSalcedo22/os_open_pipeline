@@ -8,10 +8,16 @@ Creating a data pipeline to ingest and analyse open Ordnance Survey products
 - [Analysis](https://github.com/SuperSalcedo22/os_open_pipeline#Analysis)
 
 ## Tech stack
-- Python
-- Airflow
-- Bash
-- Postgres
+#### Python
+- Build on Object-oriented programming skills with a more complex use case
+#### Airflow
+- Scheduling and monitoring of workflows
+- Sensors allows for automation of tasks using external triggers
+#### Linux for bash scripting and [Geospatial Data Abstraction Library (GDAL)](https://gdal.org/index.html)
+- Operating system used for automated shell scripts
+- GDAL allows for easier manipulation of geospatial data
+#### Postgres and [postgis](https://postgis.net/)
+- For data storage and easy integration of geospatial data using postgis
 
 ## Ordnance Survey
 - Summary about ordnance survey
@@ -20,7 +26,6 @@ Creating a data pipeline to ingest and analyse open Ordnance Survey products
 - Extract
 - Transform
 - Load
-
 
 ## Analysis
 
