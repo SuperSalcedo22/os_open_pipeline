@@ -5,7 +5,7 @@ Creating a data pipeline to ingest and analyse open Ordnance Survey products
 - [Tech Stack](https://github.com/SuperSalcedo22/os_open_pipeline#Ordnance-Survey)
 - [Ordnance Survey](https://github.com/SuperSalcedo22/os_open_pipeline#Ordnance-Survey)
 - [Ingestion Pipeline](https://github.com/SuperSalcedo22/os_open_pipeline#Ingestion-Pipeline)
-- [Analysis](https://github.com/SuperSalcedo22/os_open_pipeline#Analysis)
+
 
 ## Tech stack
 #### Python
@@ -26,8 +26,6 @@ Creating a data pipeline to ingest and analyse open Ordnance Survey products
 - Extract
 - Transform
 - Load
-
-## Analysis
 
 
 [Back to top](https://github.com/SuperSalcedo22/os_open_pipeline)
