@@ -10,6 +10,7 @@ Creating a data pipeline to ingest and analyse open Ordnance Survey products
 ## Tech stack
 #### Python
 - Build on Object-oriented programming skills with a more complex use case
+- Strong synergy with airflow 
 #### Airflow
 - Scheduling and monitoring of workflows
 - Sensors allows for automation of tasks using external triggers
