@@ -16,12 +16,17 @@ Creating a data pipeline to ingest open Ordnance Survey products
 - Sensors allows for automation of tasks using external triggers
 #### Linux for bash scripting and [Geospatial Data Abstraction Library (GDAL)](https://gdal.org/index.html)
 - Operating system used for automated shell scripts
-- GDAL allows for easier manipulation of geospatial data
+- GDAL allows for easier manipulation of geospatial (GIS) data
 #### Postgres and [postgis](https://postgis.net/)
 - For data storage and easy integration of geospatial data using postgis
 
 ## Ordnance Survey
-- Summary about ordnance survey
+The [Ordnance Survey (OS)](https://www.ordnancesurvey.co.uk/) is the national mapping agency for Great Britain (GB) which surveys and provides data for a multitude of purposes, such as urban planning, infrastructure development, environmental management and emergency response. This data can come in the following formats:
+- Vector (Geography Markup Language (GML), Shapefile (SHP) and GeoJSON)
+- Raster (Image datasets: TIFF and PNG)
+- Tabular data (CSV)
+
+OS provide subscription/paid for products as well as free open products that can be accessed by anyone that can create an account and connect to their API or website. The following pipeline will make use of access to their open products to download them onto a system and postgres database
 
 ## Ingestion Pipeline
 - Extract
