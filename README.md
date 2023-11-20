@@ -1,5 +1,5 @@
 # Ordnance Survey Ingestion Pipeline
-Creating a data pipeline to ingest and analyse open Ordnance Survey products
+Creating a data pipeline to ingest open Ordnance Survey products
 
 ## Table of contents
 - [Tech Stack](https://github.com/SuperSalcedo22/os_open_pipeline#Ordnance-Survey)
