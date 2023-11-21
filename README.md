@@ -31,9 +31,13 @@ The [Ordnance Survey (OS)](https://www.ordnancesurvey.co.uk/) is the national ma
 OS provide subscription/paid for products as well as free open products that can be accessed by anyone that can create an account and connect to their API or website. The following pipeline will make use of access to their open products to download them onto a system and postgres database
 
 ## Ingestion Pipeline
-- Extract
-- Transform
-- Load
+### Extraction 
+- Using python, the api is connected to 
+
+### Transform data
 
 
+### Loading data
+
+![alt text](https://github.com/SuperSalcedo22/os_open_pipeline/blob/main/pipeline_logic.png "Pipeline logic")
 [Back to top](https://github.com/SuperSalcedo22/os_open_pipeline)
