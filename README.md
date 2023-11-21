@@ -67,8 +67,9 @@ This logic is detailed in the diagram below:
 ### os_open_names_dag.py
 - Script that details the settings for the os open names dag
 - Details the poke and connects to the shell script to upload the items to the postgres database
-###
-- 
+### os_open_manager_dag.py
+- Details the dag manager which externally triggers other dags
+- Looks at the schedule compared to the current month and then switches on the required dags to ensure the poke process is started
 ### check_counts_within_10_percent_csv.sql
 - SQL function that is run as a data quality check
 - Checks if the csv count loaded onto the database matches the count reported by the shell script
