@@ -1,7 +1,5 @@
 '''
-This is the script defining the dag OS_Open_Pipeline, which is the full pipeline
-It works by importing all the required modules from the os_open_functions file to create the dag
-In order to look at or make edits to full pipeline, see os_open_functions
+This is the script defining the dag OS_Open_Pipeline
 '''
 
 import os
@@ -28,10 +26,22 @@ from airflow.models.baseoperator import chain
 from airflow import models
 
 # importing from master file
-from os_open_classes import *
+from os_open_pipeline import *
 
-# functions from global functions file
-from global_functions import skip_upload_check
+################################################################
+# ShortCircuitOperator function
+
+def skip_upload_check(ti=None):
+    '''Checks the xcom produced by downloads to determine if any files should be uploaded to the shared drive'''
+    # Get the XCom value
+    xcom_value = ti.xcom_pull(key="download_count")
+
+    # If the XCom value is equal to zero, skip all the next tasks
+    if xcom_value == 0:
+        return False
+
+    # Otherwise, continue with the pipeline
+    return True
 
 ################################################################
 # Airflow variables
@@ -40,7 +50,7 @@ default_args = {
     'owner': 'airflow',
     'depends_on_past': True,
     'start_date': dt.datetime(2023,9,19,10,30,0),
-    'email': ['jan.salcedo@emapsite.com'],
+    'email': ['user@domain.com'],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
@@ -70,17 +80,8 @@ dag = DAG(
     tags=['Ordnance Survey','Production','OS Open','Main Pipeline']
 )
 
-# Defining the task that runs the version check
-task1 = PythonOperator(
-    task_id='version_check',
-    python_callable=update_check,
-    dag=dag,
-    retries=3,
-    depends_on_past=False
-)
-
 # Defining the task that downloads the update files
-task2 = PythonOperator(
+task1 = PythonOperator(
     task_id='download',
     python_callable=download_data,
     dag=dag,
@@ -96,7 +97,7 @@ skip_task_if_false = ShortCircuitOperator(
 )
 
 # Defining the task that uploads the files to the shared drive
-task3 = PythonOperator(
+task2 = PythonOperator(
     task_id='upload_shareddrive',
     python_callable=upload,
     dag=dag,
@@ -104,4 +105,4 @@ task3 = PythonOperator(
 )
 
 # Dependancies
-task1 >> task2 >> skip_task_if_false >> task3
+task1 >> skip_task_if_false >> task2
