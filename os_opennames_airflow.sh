@@ -45,6 +45,26 @@ function append_log {
     echo "$text" >> "$file_path"
 }
 
+function check_data {
+    # the csv doesn't come with the headers, so can't compare them
+
+    # check the number of columns match by comparing against the database
+    output=$(pgquery "SELECT count(column_name) FROM information_schema.columns WHERE table_schema = '$pgschema' AND table_name = 'os_opennames';" ) 
+    # Remove all non-numerical characters
+    db_col_count="${output//[^0-9]/}"
+    # minus 1 as the csv doesn't have a geom column
+    db_col_count=$(($db_col_count - 1))
+
+    # check the number of columns on the csv (assuming no commas in the column names)
+    data_col_count=$(head -n 1 $path/opennames_ALL_$filedate.csv | tr ',' '\n' | wc -l)
+
+    if [ $data_col_count -eq $db_col_count ]; then
+        echo "Column counts match, continuing"
+    else
+        exitmesg "Mismatching number of columns, Postgres: $db_col_count, File: $data_col_count - please check"
+    fi
+}
+
 function copy_data {
     echo "Concatenating files"
     # First, find the date of the file to be used
@@ -90,6 +110,7 @@ function main {
     fi
     get_variables
     copy_data
+    check_data
     load_tables
     check_counts "os_opennames" "os_opennames_load"
     commit2database
